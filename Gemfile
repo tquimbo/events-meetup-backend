@@ -49,3 +49,5 @@ gem 'pry'
 gem "http", "~> 5.0"
 
 gem "dotenv-rails", "~> 2.7"
+
+gem 'httparty'
