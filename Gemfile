@@ -45,3 +45,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pry'
+
+gem "http", "~> 5.0"
+
+gem "dotenv-rails", "~> 2.7"

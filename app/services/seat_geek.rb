@@ -4,14 +4,14 @@ class SeatGeek
 
     attr_reader :response, :businesses
   
-    def initialize(type, location, artist, event, venue)
+    def initialize(input)
       url = "https://api.seatgeek.com/2/events/"
       params = {
-        type: type,
-        location: location,
-        artist: artist,
-        event: event,
-        venue: venue, 
+        # type: type,
+        # location: location,
+        # artist: artist,
+        # event: event,
+        # venue: venue, 
       }
   
       response = HTTP.auth("Bearer #{ENV["SEATGEEK_API_KEY"]}").get(url, params: params)
