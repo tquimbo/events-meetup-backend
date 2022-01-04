@@ -1,3 +1,5 @@
+require 'pry'
+
 class SeatGeek
 
     attr_reader :response, :businesses
@@ -6,7 +8,7 @@ class SeatGeek
       url = "https://api.seatgeek.com/2/events/"
       params = {
         type: type,
-        location: location
+        location: location,
         artist: artist,
         event: event,
         venue: venue, 
@@ -15,6 +17,7 @@ class SeatGeek
       response = HTTP.auth("Bearer #{ENV["SEATGEEK_API_KEY"]}").get(url, params: params)
       @response = response.parse
       @events = @response["events"]
+      binding.pry
     end
   
     def to_events
@@ -23,8 +26,7 @@ class SeatGeek
             event.performer_name = event["performers"]["name"]
             event.performer_image = event["performers"]["image"]
             event.venue_name = event["venue"]["name"]
-            event.venue_name = event["venue"]["name"]
-            event.venue_address = event["venue"]["address"]
+            event.venue_address = event["address"]
             event.venue_city = event["venue"]["city"]
             event.venue_state = event["venue"]["state"]
             event.venue_country = event["venue"]["country"]

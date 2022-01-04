@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  performer_name: MyString
+  performer_image: MyString
+  venue_name: MyString
+  venue_address: MyString
+  venue_city: MyString
+  venue_state: MyString
+  venue_country: MyString
+  venue_zipcode: 1
+  datetime: 2022-01-03 21:34:54
+  attendance_status: MyString
+  event_type: MyString
+  seatgeek_id: 1
+
+two:
+  title: MyString
+  performer_name: MyString
+  performer_image: MyString
+  venue_name: MyString
+  venue_address: MyString
+  venue_city: MyString
+  venue_state: MyString
+  venue_country: MyString
+  venue_zipcode: 1
+  datetime: 2022-01-03 21:34:54
+  attendance_status: MyString
+  event_type: MyString
+  seatgeek_id: 1
