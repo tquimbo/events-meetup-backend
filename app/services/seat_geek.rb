@@ -20,7 +20,7 @@ class SeatGeek
     end
 
        def to_events
-       event_ids = Adele.events.map do |e|
+       event_ids = self.events.map do |e|
         Event.find_or_create_by(id: e["id"]) do |event|
             event.performer_name = e["performers"][0]["name"]
             event.performer_image = e["performers"][0]["image"]
@@ -33,7 +33,6 @@ class SeatGeek
             event.datetime = e["datetime_local"]          
         end.id
       end
-      byebug
       Event.where(id: events_ids)
     end
  
