@@ -12,7 +12,12 @@ class SeatGeek
       }
   
       # @response = HTTP.get("https://api.seatgeek.com/2/performers?client_id=MjExMjk0NjV8MTY0MTA5MDU5OC40MTYzNzQy").parse
-        @response = HTTP.get("https://api.seatgeek.com/2/events?q=#{params[:input]}&client_id=MjExMjk0NjV8MTY0MTA5MDU5OC40MTYzNzQy").parse
+        # @response = HTTP.get("https://api.seatgeek.com/2/events?q=#{params[:input]}&client_id=MjExMjk0NjV8MTY0MTA5MDU5OC40MTYzNzQy").parse
+        # @response = HTTP.get("https://api.seatgeek.com/2/events?per_page=5000&page=1&client_id=MjExMjk0NjV8MTY0MTA5MDU5OC40MTYzNzQy").parse
+        @response = HTTP.get("https://api.seatgeek.com/2/events?performers.slug=#{params[:input]}&client_id=MjExMjk0NjV8MTY0MTA5MDU5OC40MTYzNzQy").parse
+        
+        
+        
       # response = HTTP.auth('#{ENV["client_id"],ENV["client_secret"]}').get(url, params: params)
       # @response = response.parse
       @events = @response["events"]
