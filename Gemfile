@@ -52,3 +52,5 @@ gem "dotenv-rails", "~> 2.7"
 
 gem 'httparty'
 gem "active_model_serializers", "~> 0.10.12"
+
+gem "graphql", "~> 1.13"
