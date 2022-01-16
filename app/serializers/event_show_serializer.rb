@@ -1,3 +1,3 @@
 class EventShowSerializer < ActiveModel::Serializer
-  attributes :id, :performer_name, :venue_name, :venue_address, :datetime, 
+  attributes :id, :performer_name, :venue_name, :venue_address, :attendance_status, :datetime
 end
