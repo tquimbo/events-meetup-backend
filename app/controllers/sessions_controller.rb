@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
         if user && user.authenticate(params[:password])
           render_user_with_token(user)
         else
-          render json: {errors: "Invalid Username and/or Password, get good!"}, status: :forbidden
+          render json: {errors: "Invalid Username and/or Password"}, status: :forbidden
         end
       end
       
