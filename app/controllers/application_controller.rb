@@ -8,7 +8,6 @@ class ApplicationController < ActionController::API
         User.find(decoded_token["user_id"])
       end
 
-   
 
       private
 
