@@ -8,10 +8,10 @@ module Types
     # They will be entry points for queries on your schema.
 
     # TODO: remove me
-    field :test_field, String, null: false,
+    field :events, [EventType], null: false, description: "A List of Events"
       description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    def events
+      Event.all
     end
   end
 end

@@ -56,3 +56,6 @@ gem "active_model_serializers", "~> 0.10.12"
 gem "graphql", "~> 1.13"
 
 gem "jwt", "~> 2.3"
+
+gem "rest-client"
+
