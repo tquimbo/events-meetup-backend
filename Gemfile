@@ -57,5 +57,5 @@ gem "graphql", "~> 1.13"
 
 gem "jwt", "~> 2.3"
 
-gem "rest-client"
+gem "rest-client", "~> 2.1.0"
 
