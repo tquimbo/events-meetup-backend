@@ -18,6 +18,6 @@ Rails.application.routes.draw do
 
 
   get '/events/user/:id', to: 'events#user_events'
-  # get "/me", to: 'sessions#autologin'
+  get "/me", to: 'sessions#autologin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
