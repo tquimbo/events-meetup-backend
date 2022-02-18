@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_events
   # get '/events', to: "events#get_events"
   post "/graphql", to: "graphql#execute"
   resources :users
