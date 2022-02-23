@@ -19,16 +19,19 @@ class EventsController < ApplicationController
     #   end
     # end
 
-    def update
-      # event = Event.find_by_id(params[:id]))
-      user_event =  logged_in_user.Event.find(params[:id])
-      if user_event.update(event_params)
-        # render json: event 
-        render json: event, include: ['users'], serializer: UserEventSerializer
-      else
-        render json: {errors: user.errors.full_messages.to_sentence}, status: :unprocessable_entity
-      end
-    end
+    # def update
+    #   # event = Event.find_by_id(params[:id]))
+    #   user_event =  logged_in_user.Event.find(params[:id])
+    #   if user_event.update(event_params)
+    #     # render json: event
+    #     # user_event.user_id = session[:user_id] 
+    #     # render json: event, include: ['users'], serializer: UserEventSerializer
+    #     render json: { user_event: UserEventSerializer.new(user_event), jwt: token }, status: :created
+        
+    #   else
+    #     render json: {errors: user.errors.full_messages.to_sentence}, status: :unprocessable_entity
+    #   end
+    # end
 
 
 
