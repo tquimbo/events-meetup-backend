@@ -19,20 +19,30 @@ class EventsController < ApplicationController
     #   end
     # end
 
-
-    def create
-      user = User.find_by_username(params[:username])
-      if user && user.authenticate(params[:password])
-        response = HTTP.get("https://api.seatgeek.com/2/events?performers.slug=#{event_params}&client_id=MjExMjk0NjV8MTY0MTA5MDU5OC40MTYzNzQy").parse
-        events = Event.build(event_params)
-        if events.save
-          events.to_events
-            render json: events
-          else
-            render json: {errors: user.errors.full_messages.to_sentence}, status: :unprocessable_entity
-        end
-      end
+    def update
+      event = Event.find_by_id(id: params[:id]))
+      if logged_in? && event
+        user_event = current_user.events.build
+        render json: event, include: ['users'], serializer: UserEventSerializer
+      else
+        render json: {errors: user.errors.full_messages.to_sentence}, status: :unprocessable_entity
     end
+
+
+
+    # def create
+    #   user = User.find_by_username(params[:username])
+    #   if user && user.authenticate(params[:password])
+    #     response = HTTP.get("https://api.seatgeek.com/2/events?performers.slug=#{event_params}&client_id=MjExMjk0NjV8MTY0MTA5MDU5OC40MTYzNzQy").parse
+    #     events = Event.build(event_params)
+    #     if events.save
+    #       events.to_events
+    #         render json: events
+    #       else
+    #         render json: {errors: user.errors.full_messages.to_sentence}, status: :unprocessable_entity
+    #     end
+    #   end
+    # end
 
  
 
@@ -45,7 +55,7 @@ class EventsController < ApplicationController
       private
   
     def event_params
-      params.permit(:performer_name, :performer_image, :venue_name, :venue_address, :datetime, :seatgeek_id )
+      params.permit(:performer_name, :performer_image, :venue_name, :venue_address, :datetime, :seatgeek_id, :id )
     end
 
     def to_events

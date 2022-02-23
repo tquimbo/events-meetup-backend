@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
 
   resources :events do
-    resources :user_events
+    resources :users
   end
 
   resources :users do
-    resources :user_events
+    resources :events
   end
 
   resources :sessions

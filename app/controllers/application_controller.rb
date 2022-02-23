@@ -18,6 +18,10 @@ class ApplicationController < ActionController::API
     render json: {user: ActiveModelSerializers::SerializableResource.new(user, serializer: UserSerializer), token: encode_token(user.id)}
   end
 
+  def logged_in?
+    !!logged_in_user
+  end
+
 
   private
 
