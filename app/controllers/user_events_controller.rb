@@ -6,8 +6,8 @@ class UserEventsController < ApplicationController
     end
 
     def create
-        if user = User.find(user_event_params[:user_id])
-            if event = Event.find(user_event_params[:event_id])
+        # if user = User.find(user_event_params[:user_id])
+        #     if event = Event.find(user_event_params[:event_id])
         user_event = UserEvent.create(user_event_params)
         render json: event, include: [:users]
         # user = User.find_by_username(params[:username])
@@ -23,9 +23,13 @@ class UserEventsController < ApplicationController
         # #     render json: { error: 'failed to add event'}, status: :not_acceptable
         # else
         #     user_event = UserEvent.create(user_event_params)
-        #     render json: event, include: [:users]
+            # render json: event, include: [:users]
         # end
     end
+
+    def show
+        render json: event, include: ['chats', 'chats.messages']
+      end
 
     # def new
     #     if user = User.find(user_event_params[:user_id]) && event = Event.find(user_event_params[:event_id])
