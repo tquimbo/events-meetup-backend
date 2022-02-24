@@ -22,6 +22,14 @@ class ApplicationController < ActionController::API
     !!logged_in_user
   end
 
+  def parse_and_decode(segment)
+    JWT::JSON.parse(Base64.urlsafe_decode64(segment))
+  rescue ::JSON::ParserError, ArgumentError
+    raise JWT::DecodeError, 'Invalid segment encoding'
+  end
+
+  
+
 
   private
 

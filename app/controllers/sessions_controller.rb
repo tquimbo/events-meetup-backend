@@ -1,6 +1,7 @@
 # require 'jwt'
 
 class SessionsController < ApplicationController
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   def create
     user = User.find_by_username(params[:username])
