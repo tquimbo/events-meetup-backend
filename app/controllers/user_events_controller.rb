@@ -9,14 +9,12 @@ class UserEventsController < ApplicationController
 
         
         
-            user_event = logged_in_user.user_events.create!(user_event_params)
+            user_event = logged_in_user.user_events.create(user_event_params)
             
     
             render json: user_event, include: [:users]
         
-        # else
-        #     render json: { error: 'failed to add event'}, status: :not_acceptable
-        # end     
+  
     end
 
 
