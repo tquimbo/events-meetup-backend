@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  # rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
 
   # def decode_segments
@@ -15,10 +15,11 @@ class ApplicationController < ActionController::API
   #   [payload, header]
   # end
 
-#   def segments
-#     segments = token.split('.');
-#     if (segments.length !== 3) {
-#   throw new Error('Not enough or too many segments'); }
+#   def segment
+#     segment = token.split('.')
+#   #   if (segments.length !== 3) {
+#   # throw new Error('Not enough or too many segments'); }
+    
 # end
 
   def encode_token(user_id)
@@ -46,6 +47,17 @@ class ApplicationController < ActionController::API
   # rescue ::JSON::ParserError, ArgumentError
   #   raise JWT::DecodeError, 'Invalid segment encoding'
   # end
+
+  def self.decode(token)
+    body = JWT.decode(token, JWT_SECRET)[0]
+    HashWithIndifferentAccess.new body
+  rescue JWT::ExpiredSignature, JWT::VerificationError => e
+    raise ExceptionHandler::ExpiredSignature, e.message
+  rescue JWT::DecodeError, JWT::VerificationError => e
+    raise ExceptionHandler::DecodeError, e.message
+  end
+
+
 
   
 
