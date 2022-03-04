@@ -2,7 +2,7 @@ class UserEventsController < ApplicationController
 
     def index
         user_events = UserEvent.all
-        render json: user_events, include: [:users]
+        render json: user_events, include: [:user]
     end
 
     # def create
@@ -21,22 +21,36 @@ class UserEventsController < ApplicationController
     # end
 
     def create
-      user = User.find_by(id: user_event_params[:user_id])
-
-        if user
-        
-            user_event = UserEvent.create(user_event_params)
-
-            # byebug
+      # current_user = User.find(user_event_params[:user_id]) 
+      # if current_user == session[:user_id]
+        user_event = UserEvent.create(user_event_params)
+        render json: user_event, include: [:users]
             
-            render json: user_event
+      end
+
+
+      # user_event = current_user.user_events.build(user_event_params)
+
+
+      # user_event.user_id = session[:user_id]
+
+        
+        
+       
+      #       byebug
+      # user_event = UserEvent.create(user_event_params)
+
+            # user_event.users << user
+
+            
+            # render json: user_event, include: [:user]
             
         #   else
         #     render json: { error: 'failed to create event'}, status: :not_acceptable
         # end  
-        end
+        # end
         
-    end
+    # end
 
 
 

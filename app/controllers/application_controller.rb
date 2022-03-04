@@ -22,6 +22,10 @@ class ApplicationController < ActionController::API
     
 # end
 
+# def current_user
+#   User.find_by(id: session[:user_id])
+# end
+
   def encode_token(user_id)
     JWT.encode({user_id: user_id}, ENV["JWT_SECRET"])
   end
