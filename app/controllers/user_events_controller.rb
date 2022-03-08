@@ -2,7 +2,8 @@ class UserEventsController < ApplicationController
 
     def index
         user_events = UserEvent.all
-        render json: user_events, include: [:user]
+        render json: user_events
+        # render json: user_events, include: [:user]
     end
 
     # def create
@@ -24,7 +25,8 @@ class UserEventsController < ApplicationController
       # current_user = User.find(user_event_params[:user_id]) 
       # if current_user == session[:user_id]
         user_event = UserEvent.create(user_event_params)
-        render json: user_event, include: [:users]
+        render json: user_event
+        # render json: user_event, include: [:users]
             
       end
 

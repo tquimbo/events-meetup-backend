@@ -28,6 +28,14 @@ end
   #     end
   # end
 
+  def update
+    user = User.find(params[:id])
+    if user 
+      user.update(user_params)
+            render json: user
+        end
+  end
+
   
   def show
     user = User.find(params[:id])

@@ -6,13 +6,13 @@ Rails.application.routes.draw do
 
   resources :events
 
-  resources :users do 
-    resources :user_events 
-  end
+  resources :users
 
   resources :sessions
 
-  resources :user_events 
+  resources :user_events, only: [:index, :create, :update, :delete, :show]
+
+
 
   get "/me", to: 'sessions#autologin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
