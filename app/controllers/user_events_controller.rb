@@ -21,14 +21,32 @@ class UserEventsController < ApplicationController
         
     # end
 
-    def create
-      # current_user = User.find(user_event_params[:user_id]) 
-      # if current_user == session[:user_id]
-        user_event = UserEvent.create(user_event_params)
-        render json: user_event
-        # render json: user_event, include: [:users]
+    # def create
+    #   # current_user = User.find(user_event_params[:user_id]) 
+    #   # if current_user == session[:user_id]
+    #     user_event = UserEvent.create(user_event_params)
+    #     render json: user_event
+    #     # render json: user_event, include: [:users]
             
-      end
+    #   end
+
+
+  #   def create
+  #   user = User.find(params[:id])
+  #   user_event = Event.find(params[:event_id])
+  #   if user && user_event
+  #     user.user_events << user_event
+  #       end
+  # end
+
+  def create
+    user = User.find(user_event_params[:user_id])
+    event = Event.find(user_event_params[:event_id])
+    if user && event
+      user_event = UserEvent.create(user_event_params)
+      user.user_events << user_event
+        end
+  end
 
 
       # user_event = current_user.user_events.build(user_event_params)

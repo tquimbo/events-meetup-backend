@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 end
 
 
-
     # def create
     #     user = User.new(user_params)
     #     if user.save
@@ -28,13 +27,13 @@ end
   #     end
   # end
 
-  def update
-    user = User.find(params[:id])
-    if user 
-      user.update(user_params)
-            render json: user
-        end
-  end
+  # def update
+  #   user = User.find(params[:id])
+  #   user_event = Event.find(params[:event_id])
+  #   if user && user_event
+  #     user.user_events << user_event
+  #       end
+  # end
 
   
   def show
@@ -57,7 +56,7 @@ end
     private
   
     def user_params
-      params.permit(:username, :password, :first_name, :last_name)
+      params.permit(:username, :password, :first_name, :last_name, :user_events)
     end
   
   end
