@@ -7,6 +7,8 @@ class EventsController < ApplicationController
         render json: events
     end
 
+    #fixed postgres bug
+
     # def create
     #   user = User.find_by_username(params[:username])
     #   if user && user.authenticate(params[:password])
@@ -32,6 +34,7 @@ class EventsController < ApplicationController
     #     render json: {errors: user.errors.full_messages.to_sentence}, status: :unprocessable_entity
     #   end
     # end
+
 
 
 
