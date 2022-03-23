@@ -8,6 +8,15 @@ Rails.application.routes.draw do
 
   resources :users
 
+
+
+  # resources :users do
+  #   resourses :user_events, only: [:create]
+  # end
+
+  # resourses :user_events
+
+
   resources :sessions
 
   resources :user_events, only: [:index, :create, :update, :delete, :show]

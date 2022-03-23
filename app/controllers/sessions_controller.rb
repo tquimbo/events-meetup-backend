@@ -3,6 +3,10 @@
 class SessionsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
+  def index
+
+  end
+
   def create
     user = User.find_by_username(params[:username])
     if user && user.authenticate(params[:password])
