@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   #   resourses :user_events, only: [:create]
   # end
 
-  # resourses :user_events
+  resources :user_events
 
 
   resources :sessions

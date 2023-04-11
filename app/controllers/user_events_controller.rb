@@ -6,6 +6,15 @@ class UserEventsController < ApplicationController
         # render json: user_events, include: [:user]
     end
 
+    class UserEventsController < ApplicationController
+      def create
+        @user = User.find(params[:user_id])
+        @event = Event.find(params[:event_id])
+        @user_event = UserEvent.create(user: @user, event: @event)
+        # redirect or render as appropriate
+      end
+    end
+
     # def create
     #   user = User.find_by(id: user_event_params[:user_id])
 
