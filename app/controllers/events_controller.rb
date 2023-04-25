@@ -7,6 +7,10 @@ class EventsController < ApplicationController
         render json: events
     end
 
+    def attendees
+      self.users
+    end
+
     #fixed postgres bug
 
     # def create
@@ -56,7 +60,7 @@ class EventsController < ApplicationController
 
     def show
         event = Event.find(params[:id])
-        render json: event, serializer: EventShowSerializer
+        render json: @event.as_json.merge(attendees: @event.attendees), serializer: EventShowSerializer
       end
 
 
