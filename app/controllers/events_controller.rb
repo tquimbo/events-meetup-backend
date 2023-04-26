@@ -7,7 +7,67 @@ class EventsController < ApplicationController
         render json: events
     end
 
-    #fixed postgres bug
+  
+
+    def show
+        event = Event.find(params[:id])
+        render json: event, serializer: EventShowSerializer
+      end
+
+      def update_attendees
+        # Your logic for updating the attendees
+        # ...
+        @event = Event.find(params[:id])
+  
+        if @event.update(event_params)
+          # update successful
+          redirect_to @event
+        else
+          # update failed
+          render 'edit'
+        end
+      
+        # Broadcast the updated event to the channel
+        ActionCable.server.broadcast("events_#{event.id}", event: render_event(event))
+      end
+      
+      private
+      
+      def render_event(event)
+        ApplicationController.renderer.render(partial: 'events/event', locals: { event: event })
+      end
+
+
+      private
+  
+    def event_params
+      params.permit(:performer_name, :performer_image, :venue_name, :venue_address, :datetime, :seatgeek_id, :id, :user_id, :users )
+    end
+
+  
+  
+
+end
+
+
+  #   def to_events
+  #     event_ids = self.events.map do |e|
+  #      Event.find_or_create_by(id: e["id"]) do |event|
+  #          event.performer_name = e["performers"][0]["name"]
+  #          event.performer_image = e["performers"][0]["image"]
+  #          event.venue_name = e["venue"]["name"]
+  #          event.venue_address = e["venue"]["extended_address"]
+  #          event.venue_city = e["venue"]["city"]
+  #          event.venue_state = e["venue"]["state"]
+  #          event.venue_country = e["venue"]["country"]
+  #          event.venue_zipcode= e["venue"]["postal_code"]
+  #          event.datetime = e["datetime_local"]          
+  #      end.id
+  #    end
+  #    Event.where(id: events_ids)
+  #  end
+
+   #fixed postgres bug
 
     # def create
     #   user = User.find_by_username(params[:username])
@@ -51,40 +111,3 @@ class EventsController < ApplicationController
     #     end
     #   end
     # end
-
- 
-
-    def show
-        event = Event.find(params[:id])
-        render json: event, serializer: EventShowSerializer
-      end
-
-
-      private
-  
-    def event_params
-      params.permit(:performer_name, :performer_image, :venue_name, :venue_address, :datetime, :seatgeek_id, :id, :user_id, :users )
-    end
-
-  #   def to_events
-  #     event_ids = self.events.map do |e|
-  #      Event.find_or_create_by(id: e["id"]) do |event|
-  #          event.performer_name = e["performers"][0]["name"]
-  #          event.performer_image = e["performers"][0]["image"]
-  #          event.venue_name = e["venue"]["name"]
-  #          event.venue_address = e["venue"]["extended_address"]
-  #          event.venue_city = e["venue"]["city"]
-  #          event.venue_state = e["venue"]["state"]
-  #          event.venue_country = e["venue"]["country"]
-  #          event.venue_zipcode= e["venue"]["postal_code"]
-  #          event.datetime = e["datetime_local"]          
-  #      end.id
-  #    end
-  #    Event.where(id: events_ids)
-  #  end
-
-  
-
-
-
-end
