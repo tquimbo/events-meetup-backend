@@ -6,14 +6,6 @@ class UserEventsController < ApplicationController
         # render json: user_events, include: [:user]
     end
 
-    class UserEventsController < ApplicationController
-      def create
-        @user = User.find(params[:user_id])
-        @event = Event.find(params[:event_id])
-        @user_event = UserEvent.create(user: @user, event: @event)
-        # redirect or render as appropriate
-      end
-    end
 
     # def create
     #   user = User.find_by(id: user_event_params[:user_id])
@@ -48,14 +40,25 @@ class UserEventsController < ApplicationController
   #       end
   # end
 
+  # def create
+  #   user = User.find(user_event_params[:user_id])
+  #   event = Event.find(user_event_params[:event_id])
+  #   if user && event
+  #     user_event = UserEvent.create(user_event_params)
+  #     user.user_events << user_event
+  #       end
+  # end
+
   def create
     user = User.find(user_event_params[:user_id])
     event = Event.find(user_event_params[:event_id])
+  
     if user && event
-      user_event = UserEvent.create(user_event_params)
+      user_event = UserEvent.find_or_create_by(user_id: user.id, event_id: event.id)
       user.user_events << user_event
-        end
+    end
   end
+  
 
 
       # user_event = current_user.user_events.build(user_event_params)
