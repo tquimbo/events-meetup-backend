@@ -2,29 +2,6 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
 
-  # def decode_segments
-  #   validate_segment_count!
-  #   if @verify
-  #     decode_crypto
-  #     verify_algo
-  #     set_key
-  #     verify_signature
-  #     verify_claims
-  #   end
-  #   raise(JWT::DecodeError, 'Not enough or too many segments') unless header && payload
-  #   [payload, header]
-  # end
-
-#   def segment
-#     segment = token.split('.')
-#   #   if (segments.length !== 3) {
-#   # throw new Error('Not enough or too many segments'); }
-    
-# end
-
-# def current_user
-#   User.find_by(id: session[:user_id])
-# end
 
   def encode_token(user_id)
     JWT.encode({user_id: user_id}, ENV["JWT_SECRET"])
@@ -45,12 +22,6 @@ class ApplicationController < ActionController::API
   def logged_in?
     !!logged_in_user
   end
-
-  # def parse_and_decode(segment)
-  #   JWT::JSON.parse(Base64.urlsafe_decode64(segment))
-  # rescue ::JSON::ParserError, ArgumentError
-  #   raise JWT::DecodeError, 'Invalid segment encoding'
-  # end
 
   def self.decode(token)
     body = JWT.decode(token, JWT_SECRET)[0]
