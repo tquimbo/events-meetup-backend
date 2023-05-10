@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-
-
   def encode_token(user_id)
     JWT.encode({user_id: user_id}, ENV["JWT_SECRET"])
   end
@@ -31,11 +29,6 @@ class ApplicationController < ActionController::API
   rescue JWT::DecodeError, JWT::VerificationError => e
     raise ExceptionHandler::DecodeError, e.message
   end
-
-
-
-  
-
 
   private
 
