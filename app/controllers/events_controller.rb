@@ -1,11 +1,15 @@
 
 class EventsController < ApplicationController
 
-  def index
-      events = Event.all
-      render json: events
-  end
+  # def index
+  #     events = Event.all
+  #     render json: events
+  # end
 
+  def index
+    events = Event.all
+    render json: events, each_serializer: EventSerializer
+  end
 
 
   def show
@@ -35,12 +39,13 @@ class EventsController < ApplicationController
     def render_event(event)
       ApplicationController.renderer.render(partial: 'events/event', locals: { event: event })
     end
+    
 
 
     private
 
   def event_params
-    params.permit(:performer_name, :performer_image, :venue_name, :venue_address, :datetime, :seatgeek_id, :id, :user_id, :users )
+    params.permit(:performer_name, :performer_image, :venue_name, :venue_address, :datetime, :seatgeek_id, :id, :user_id, :users, :formatted_datetime )
   end
 
 
