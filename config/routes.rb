@@ -3,8 +3,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'search/:query', to: 'search#index'
+
+      get 'nearby', to: 'nearby#index'
+
     end
   end
+
+
+  
 
   
   # get '/events', to: "events#get_events"

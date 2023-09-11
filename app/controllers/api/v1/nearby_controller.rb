@@ -2,15 +2,14 @@ module Api
     module V1
       class NearbyController < ApplicationController
         require 'httparty'
-    
-        def index
-            def index
-                lat = params[:lat]
-                lon = params[:lon]
-                # ...
-              
-                response = HTTParty.get("https://api.seatgeek.com/2/events?lat=#{lat}&lon=#{lon}&range=50mi")
-                # ... rest of the code
+  
+def index
+  lat = params[:lat]
+  lon = params[:lon]
+  # ...
+
+  response = HTTParty.get("https://api.seatgeek.com/2/events?lat=#{lat}&lon=#{lon}&range=50mi")
+  # ... rest of the code
           events = response["events"]
   
           event_ids = events.map do |e|
