@@ -35,7 +35,8 @@ module Api
         require 'httparty'
     
         def index
-          input = params[:query]
+          # input = params[:query]
+          input = params[:query].tr(" ", "-")
   
           response = HTTParty.get("https://api.seatgeek.com/2/events?performers.slug=#{input}&client_id=MjExMjk0NjV8MTY0MTA5MDU5OC40MTYzNzQy")
           events = response["events"]
