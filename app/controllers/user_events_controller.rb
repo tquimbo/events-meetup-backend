@@ -31,7 +31,8 @@ class UserEventsController < ApplicationController
         venue_address: user_event_params[:venue_address],
         username: user_event_params[:username],
         first_name: user_event_params[:first_name],
-        last_name: user_event_params[:last_name]
+        last_name: user_event_params[:last_name],
+        formatted_datetime: user_event_params[:formatted_datetime],
       )
   
       user.user_events << user_event
@@ -44,7 +45,7 @@ class UserEventsController < ApplicationController
 
 
   def user_event_params
-      params.require(:user_event).permit(:performer_name, :performer_image, :venue_name, :venue_address, :datetime, :username, :first_name, :last_name, :id, :user_id, :event_id, :user_event)
+      params.require(:user_event).permit(:performer_name, :performer_image, :venue_name, :venue_address, :datetime, :username, :first_name, :last_name, :id, :user_id, :event_id, :user_event, :formatted_datetime)
     end
 
 
