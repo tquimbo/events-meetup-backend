@@ -32,7 +32,7 @@ class UserEventsController < ApplicationController
         username: user_event_params[:username],
         first_name: user_event_params[:first_name],
         last_name: user_event_params[:last_name],
-        formatted_datetime: user_event_params[:formatted_datetime],
+        # formatted_datetime: user_event_params[:formatted_datetime],
       )
   
       user.user_events << user_event
