@@ -35,6 +35,8 @@ Rails.application.routes.draw do
 
   resources :user_events, only: [:index, :create, :update, :delete, :show]
 
+  
+
 
 
   get "/me", to: 'sessions#autologin'
