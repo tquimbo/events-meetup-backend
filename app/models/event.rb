@@ -8,11 +8,11 @@ class Event < ApplicationRecord
 
   
   scope :trending, -> {
-    joins(:attendees)
-    .where('attendances.created_at >= ?', 7.days.ago)
+    joins(:user_events)
+    .where('user_events.created_at >= ?', 7.days.ago)
     .group('events.id')
-    .order('COUNT(attendances.id) DESC')
-    .limit(10)
+    .order('COUNT(user_events.id) DESC')
+    .limit(100)
   }
 
 
