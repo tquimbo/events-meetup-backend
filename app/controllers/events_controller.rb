@@ -35,13 +35,7 @@ class EventsController < ApplicationController
     end
 
     def trending
-      # Example logic: Trending events could be those with the most attendees in the last 7 days
-      trending_events = Event.joins(:attendees)
-                             .where('attendances.created_at >= ?', 7.days.ago)
-                             .group('events.id')
-                             .order('COUNT(attendances.id) DESC')
-                             .limit(10)
-      render json: trending_events
+      render json: Event.trending
     end
     
     private

@@ -7,7 +7,13 @@ class Event < ApplicationRecord
   # has_many :attendees, through: :user_events, source: :user
 
   
-
+  scope :trending, -> {
+    joins(:attendees)
+    .where('attendances.created_at >= ?', 7.days.ago)
+    .group('events.id')
+    .order('COUNT(attendances.id) DESC')
+    .limit(10)
+  }
 
 
 
