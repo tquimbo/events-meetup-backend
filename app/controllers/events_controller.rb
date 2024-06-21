@@ -35,9 +35,10 @@ class EventsController < ApplicationController
     end
 
     def trending
-      render json: Event.trending
+      trending_events = Event.trending
+      render json: trending_events, each_serializer: EventSerializer
     end
-    
+  
     private
     
     def render_event(event)

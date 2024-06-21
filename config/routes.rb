@@ -6,12 +6,12 @@ Rails.application.routes.draw do
 
       get 'nearby', to: 'nearby#index'
 
-      get 'trending_events', to: 'events#trending'
+    
 
     end
   end
 
-
+ get 'events/trending', to: 'events#trending'
   
 
   
